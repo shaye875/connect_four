@@ -11,24 +11,26 @@ def create_board(cols: int = 7, rows: int = 6) -> list[list[str]]:
 
 def column_is_full(board: list[list[str]], col: int) -> bool:
     count = 0
+    print(col)
     for i in range(len(board)):
-        if len(board[i][col]) > 0:
+        if board[i][col] == "x" or board[i][col] == "o":
             count+=1
     if count == len(board):
         return True
     return False
 
-def drop_disc(board: list[list[str]], col: int, mark: str) -> tuple[int,int] | None:
+def drop_disc(board: list[list[str]], col: int, mark: str):
     disc = column_is_full(board,col)
     if disc == True:
         return None
-    for i in range(len(board)):
-        if len(board[i][col]) > 0:
-            board[i-1][col]+=mark
+    for i in range(len(board)-1,-1,-1):
+        if board[i][col] == "_":
+            board[i][col]=mark
+            row = i
             break
-        if i == len(board)-1:
-            board[i][col]+=mark
-    return board
+    for i in range(len(board)):
+        print(board[i])
+    return row,col
 
 def legal_moves(board: list[list[str]]) -> list[int]:
     colms = []
@@ -38,7 +40,7 @@ def legal_moves(board: list[list[str]]) -> list[int]:
             colms.append(i)
     return colms
 
-def render(board: list[list[str]], one_based_cols: bool = True) -> str:
+def render(board: list[list[str]]) -> str:
     str1 = ""
     for i in range(len(board)+1):
         if i > 0:
@@ -52,6 +54,7 @@ def render(board: list[list[str]], one_based_cols: bool = True) -> str:
                 str1+=" "
 
     return str1
+
 
 
 
