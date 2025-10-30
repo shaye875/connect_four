@@ -16,31 +16,43 @@ def has_winner_from(board: list[list[str]]) -> bool:
 
                try:
                  if len({board[i][j],board[i][j+1],board[i][j+2],board[i][j+3]})  == 1:
+                    print(board[i][j],board[i][j+1],board[i][j+2],board[i][j+3])
+                    print(i,j)
+                    print("____")
                     return True
-               except:
+               except IndexError:
                    pass
                try:
                    if len({board[i][j],board[i+1][j + 1],board[i+2][j + 2],board[i+3][j+3]}) == 1:
+                       print(board[i][j],board[i+1][j + 1],board[i+2][j + 2],board[i+3][j+3])
+                       print(i,j)
+                       print("/1")
                        return True
-               except:
+               except IndexError:
                    pass
+               # try:
+               #     if len({board[i][j],board[i][j - 1],board[i][j - 2],board[i][j-3]}) == 1:
+               #         print("____-1")
+               #         return True
+               # except:
+               #     pass
                try:
-                   if len({board[i][j],board[i][j - 1],board[i][j - 2],board[i][j-3]}) == 1:
+                   if len({board[i][j],board[i-1][j + 1],board[i-2][j+2],board[i-3][j+3]}) == 1:
+                       print(board[i][j],board[i+1][j - 1],board[i+2][j-2],board[i+3][j-3])
+                       print(i,j,i+1,j-1,i+2,j-2,i+3,j-3)
+                       print("/")
                        return True
-               except:
-                   pass
-               try:
-                   if len({board[i][j],board[i+1][j - 1],board[i+2][j-2],board[i+3][j-3]}) == 1:
-                       return True
-               except:
+               except IndexError:
                       pass
                try:
                    if len({board[i][j],board[i+1][j],board[i+2][j],board[i+3][j]}) == 1:
-                    print("ello")
+                    print(board[i][j],board[i+1][j],board[i+2][j],board[i+3][j])
+                    print(i,j)
+                    print("|")
                     return True
-               except:
+               except IndexError:
                 pass
-    print("false")
+
     return False
 
 def is_full(board: list[list[str]]) -> bool:

@@ -28,8 +28,7 @@ def drop_disc(board: list[list[str]], col: int, mark: str):
             board[i][col]=mark
             row = i
             break
-    for i in range(len(board)):
-        print(board[i])
+
     return row,col
 
 def legal_moves(board: list[list[str]]) -> list[int]:
